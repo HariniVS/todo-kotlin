@@ -9,10 +9,15 @@ on:
 
 jobs:
   build:
+    defaults:
+      run:
+        working-directory: todo
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v2
 
+      - name: Run unit tests
+        run: ./gradlew test
+
       - name: Build todo
-        run: cd todo && ./gradlew build
+        run: ./gradlew assemble
